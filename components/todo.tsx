@@ -56,7 +56,14 @@ export default function Todo({ todo }) {
               <i className="fas fa-pen pr-1" />
               {formatDate(todo.created_at)}
             </p>
-            <p className="text-xs text-right text-gray-500"></p>
+            <p className="text-xs text-right text-gray-500">
+              {todo.completed_at ? (
+                <>
+                  <i className="fa-regular fa-circle-check pr-1" />
+                  {formatDate(todo.completed_at)}
+                </>
+              ) : null}
+            </p>
           </div>
         </>
       )}
