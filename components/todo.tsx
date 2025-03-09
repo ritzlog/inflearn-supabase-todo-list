@@ -5,6 +5,7 @@ import { useMutation } from "@tanstack/react-query";
 import { deleteTodo, updateTodo } from "actions/todo-actions";
 import { queryClient } from "config/ReactQueryClientProvider";
 import { useState } from "react";
+import { formatDate } from "utils/formatDate";
 
 export default function Todo({ todo }) {
   const [isEditing, setIsEditing] = useState(false);
@@ -48,7 +49,16 @@ export default function Todo({ todo }) {
           onChange={(e) => setTitle(e.target.value)}
         />
       ) : (
-        <p className={`flex-1 ${completed && "line-through"}`}>{title}</p>
+        <>
+          <p className={`flex-1 ${completed && "line-through"}`}>{title}</p>
+          <div className="grid grid-rows-2 items-end pr-1">
+            <p className="text-xs text-right text-gray-500">
+              <i className="fas fa-pen pr-1" />
+              {formatDate(todo.created_at)}
+            </p>
+            <p className="text-xs text-right text-gray-500"></p>
+          </div>
+        </>
       )}
 
       {isEditing ? (
